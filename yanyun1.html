@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>燕云十六声抽卡 · 肯德基疯狂星期四</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 抽卡封面容器（模拟小程序封面+主体） */
+        .card-container {
+            width: 90vw;
+            max-width: 400px;
+            height: 650px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+
+        /* 燕云十六声抽卡封面（默认显示） */
+        .yanyun-cover {
+            width: 100%;
+            height: 100%;
+            background-image: url("file:///C:/Users/Admin/Desktop/%E9%95%BF%E5%AE%89.png"); /* 燕云十六声抽卡封面图（已提供公共图床链接） */
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding-bottom: 50px;
+            color: #fff;
+            font-size: 18px;
+            text-shadow: 0 0 10px #000;
+        }
+
+        .yanyun-cover::after {
+            content: "点击抽卡解锁奖励";
+        }
+
+        /* 抽卡封面点击后收起效果 */
+        .yanyun-cover.hide {
+            transform: translateY(-100%);
+        }
+
+        /* 肯德基疯狂星期四海报内容 */
+        .kfc-poster {
+            width: 100%;
+            height: 100%;
+            background-image: url("file:///C:/Users/Admin/Desktop/%E7%96%AF%E7%8B%82%E6%98%9F%E6%9C%9F%E5%9B%9B.png"); /* 肯德基疯狂星期四海报（公共图床链接） */
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* 模拟小程序标题栏 */
+        .mini-program-header {
+            width: 100%;
+            height: 44px;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 模拟微信小程序标题栏 -->
+    <div class="mini-program-header">燕云十六声 · 专属福利</div>
+
+    <!-- 核心容器 -->
+    <div class="card-container">
+        <!-- 肯德基海报（底层） -->
+        <div class="kfc-poster"></div>
+
+        <!-- 燕云十六声抽卡封面（上层） -->
+        <div class="yanyun-cover" id="cover"></div>
+    </div>
+
+    <script>
+        // 获取抽卡封面元素
+        const cover = document.getElementById('cover');
+
+        // 点击封面触发切换效果
+        cover.addEventListener('click', function() {
+            this.classList.add('hide');
+            // 2秒后可恢复封面（可选，实现重复点击效果）
+            setTimeout(() => {
+                this.classList.remove('hide');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
